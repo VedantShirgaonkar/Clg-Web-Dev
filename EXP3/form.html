@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 300px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .input-group { margin-bottom: 10px; }
+        label { display: block; }
+        input { width: 100%; padding: 5px; border: 1px solid #ccc; }
+        .error { color: red; font-size: 12px; }
+        .valid { border-color: green; }
+        .invalid { border-color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form name="signupForm" onsubmit="return validateForm()">
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username">
+                <span class="error" id="userError"></span>
+            </div>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="text" name="email">
+                <span class="error" id="emailError"></span>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password">
+                <span class="error" id="passError"></span>
+            </div>
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" name="confirmPassword">
+                <span class="error" id="confirmError"></span>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            let username = document.signupForm.username;
+            let email = document.signupForm.email;
+            let password = document.signupForm.password;
+            let confirmPassword = document.signupForm.confirmPassword;
+            let userError = document.getElementById("userError");
+            let emailError = document.getElementById("emailError");
+            let passError = document.getElementById("passError");
+            let confirmError = document.getElementById("confirmError");
+            let valid = true;
+            userError.innerHTML = emailError.innerHTML = passError.innerHTML = confirmError.innerHTML = "";
+            username.classList.remove("valid", "invalid");
+            email.classList.remove("valid", "invalid");
+            password.classList.remove("valid", "invalid");
+            confirmPassword.classList.remove("valid", "invalid");
+            if (username.value.length < 3 || username.value.length > 25) {
+                userError.innerHTML = "Username must be between 3 and 25 characters.";
+                username.classList.add("invalid");
+                valid = false;
+            } else {
+                username.classList.add("valid");
+            }
+            if (!email.value.includes("@") || !email.value.includes(".")) {
+                emailError.innerHTML = "Please enter a valid email";
+                email.classList.add("invalid");
+                valid = false;
+            } else {
+                email.classList.add("valid");
+            }
+            let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!]).{8,}$/;
+            if (!passwordRegex.test(password.value)) {
+                passError.innerHTML = "Password must have at least 8 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character.";
+                password.classList.add("invalid");
+                valid = false;
+            } else {
+                password.classList.add("valid");
+            }
+            if (confirmPassword.value !== password.value || confirmPassword.value === "") {
+                confirmError.innerHTML = "Please enter the password again";
+                confirmPassword.classList.add("invalid");
+                valid = false;
+            } else {
+                confirmPassword.classList.add("valid");
+            }
+            return valid;
+        }
+    </script>
+</body>
+</html>
