@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="students.xsl"?>
+<!-- <!DOCTYPE students SYSTEM "students.dtd"> -->
+<students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="students.xsd">
+    <student>
+        <name>John Doe</name>
+        <age>22</age>
+        <course>Computer Science</course>
+    </student>
+    <student>
+        <name>Jane Smith</name>
+        <age>21</age>
+        <course>Data Science</course>
+    </student>
+    <student>
+        <name>Aryan Patel</name>
+        <age>20</age>
+        <course>Artificial Intelligence</course>
+    </student>
+</students>
